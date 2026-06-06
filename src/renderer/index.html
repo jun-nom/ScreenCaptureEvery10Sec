@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self';" />
+  <title>Miro Capture</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- ── Header ─────────────────────────────────────────────────────────── -->
+    <header class="app-header">
+      <h1 class="app-title">Miro Capture</h1>
+      <p class="app-subtitle">Automated screenshot capture for Miro boards</p>
+    </header>
+
+    <!-- ── Main content ───────────────────────────────────────────────────── -->
+    <main class="app-main">
+
+      <!-- Configuration card -->
+      <section class="card">
+        <h2 class="card-title">Configuration</h2>
+
+        <div class="field">
+          <label class="field-label" for="miro-url">Miro URL</label>
+          <div class="field-row">
+            <input
+              id="miro-url"
+              class="input"
+              type="url"
+              placeholder="https://miro.com/app/board/…"
+              spellcheck="false"
+            />
+            <button id="btn-open-browser" class="btn btn-secondary">Open Browser</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="output-folder">Output Folder</label>
+          <div class="field-row">
+            <input
+              id="output-folder"
+              class="input input-readonly"
+              type="text"
+              placeholder="Select a folder…"
+              readonly
+            />
+            <button id="btn-browse" class="btn btn-secondary">Browse…</button>
+          </div>
+        </div>
+
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label" for="duration">Duration (hours)</label>
+            <input id="duration" class="input input-number" type="number"
+                   value="8" min="0.1" max="24" step="0.5" />
+          </div>
+          <div class="field">
+            <label class="field-label" for="interval">Interval (seconds)</label>
+            <input id="interval" class="input input-number" type="number"
+                   value="10" min="1" max="3600" step="1" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Controls -->
+      <section class="controls">
+        <button id="btn-start"  class="btn btn-primary"  disabled>Start</button>
+        <button id="btn-pause"  class="btn btn-warning"  disabled>Pause</button>
+        <button id="btn-resume" class="btn btn-secondary" disabled>Resume</button>
+        <button id="btn-stop"   class="btn btn-danger"   disabled>Stop</button>
+      </section>
+
+      <!-- Status card -->
+      <section class="card card-status">
+        <div class="status-header">
+          <span id="status-dot" class="status-dot status-idle"></span>
+          <span id="status-text" class="status-text">Ready — open a browser to begin</span>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat">
+            <span class="stat-label">Captures</span>
+            <span id="stat-count" class="stat-value">0</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Elapsed</span>
+            <span id="stat-elapsed" class="stat-value">–</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Next capture</span>
+            <span id="stat-next" class="stat-value">–</span>
+          </div>
+        </div>
+
+        <div id="output-path-row" class="output-path-row hidden">
+          <span class="output-path-label">Output:</span>
+          <span id="output-path" class="output-path-value"></span>
+          <button id="btn-reveal" class="btn-link">Show in Finder</button>
+        </div>
+      </section>
+
+      <!-- Log card -->
+      <section class="card card-log">
+        <div class="log-header">
+          <h2 class="card-title">Activity Log</h2>
+          <button id="btn-clear-log" class="btn-link">Clear</button>
+        </div>
+        <div id="log-panel" class="log-panel"></div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+{
+  "name": "miro-capture",
+  "version": "1.0.0",
+  "description": "Capture Miro board screenshots at regular intervals",
+  "main": "src/main/index.js",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win",
+    "build:all": "electron-builder --mac --win"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.mirocapture.app",
+    "productName": "Miro Capture",
+    "copyright": "Copyright © 2025",
+    "directories": {
+      "output": "dist",
+      "buildResources": "assets"
+    },
+    "files": [
+      "src/**/*",
+      "!**/*.map"
+    ],
+    "mac": {
+      "category": "public.app-category.utilities",
+      "target": [
+        { "target": "dmg", "arch": ["x64", "arm64"] }
+      ],
+      "darkModeSupport": true,
+      "extendInfo": {
+        "NSCameraUsageDescription": "Not required.",
+        "NSMicrophoneUsageDescription": "Not required."
+      }
+    },
+    "win": {
+      "target": [
+        { "target": "nsis", "arch": ["x64"] }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
