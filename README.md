@@ -130,6 +130,6 @@ Without these files `electron-builder` will use the default Electron icon.
 |---|---|
 | Black screenshots | Keep the Miro window visible; don't minimise it |
 | Login screen on every launch | This is expected on first run — log in once; cookies are persisted |
-| App not starting on macOS | On first open, right-click the `.app` → Open to bypass Gatekeeper |
+| "Miro Capture is damaged" on macOS | Run in Terminal: `xattr -cr "/Applications/Miro Capture.app"` then relaunch |
 | Installer blocked on Windows | Click "More info" → "Run anyway" in the Windows SmartScreen dialog |
 | `ENOENT` errors in log | Ensure the output folder exists and is writable |
